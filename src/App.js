@@ -18,7 +18,7 @@ import HistoryPageRoad from "./history-road";
 import RoadAssistanceForm from "./roadAssistantPage";
 const App = () => {
   const [user, setUser] = useState(null);
-
+//latest update
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((user) => {
       setUser(user);
@@ -29,7 +29,7 @@ const App = () => {
 
   return (
     <BrowserRouter>
-     
+    
       <Routes>
         <Route path="/" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
