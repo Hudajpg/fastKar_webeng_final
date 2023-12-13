@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import { auth } from "./firebase";
+import { auth, firestore } from "./firebase";
 import { createUserWithEmailAndPassword } from "firebase/auth";
+import { addDoc, collection, doc, setDoc } from "firebase/firestore";
 import { Link, useNavigate } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import {Form, Button } from 'react-bootstrap';
@@ -17,7 +18,14 @@ const Signup = () => {
     e.preventDefault();
     if (password === confirmPassword) {
       try {
-        await createUserWithEmailAndPassword(auth, email, password);
+        const { user } = await createUserWithEmailAndPassword(auth, email, password);
+        const userDocRef = doc(firestore, "users", user.uid);
+        const userData = {
+          name: name,
+          email: email,
+          role: "user",
+        };
+        await setDoc(userDocRef, userData);
         navigate("/");
       } catch {
         setNotice("Something went wrong (password may be invalid) ");

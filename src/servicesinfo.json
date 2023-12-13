@@ -1,0 +1,110 @@
+[
+    {
+      "id": 1,
+      "name": "Nissan",
+      "location": "Salmabad",
+      "imageName": "nissan-brand-logo-1200x938-1594842850.jpg",
+      "basicDetails": "Wheel & Brakes Care, Battery Service, Oil Change",
+      "basicPrice": "35",
+      "standardDetails": "Basic Vehicle Service, Vehicle Engine Cleaning",
+      "standardPrice": "50",
+      "comprehensiveDetails": "Full Service Package, Vehicle Testing",
+      "comprehensivePrice": "88"
+    },
+    {
+      "id": 2,
+      "name": "Toyota",
+      "location": "Tubli",
+      "imageName": "toyotaLogo.png",
+      "basicDetails": "Wheel & Brakes Care, Battery Service, Oil Change",
+      "basicPrice": "40",
+      "standardDetails": "Basic Vehicle Service, Vehicle Engine Cleaning",
+      "standardPrice": "55",
+      "comprehensiveDetails": "Full Service Package, Vehicle Testing",
+      "comprehensivePrice": "90"
+    },
+    {
+      "id": 3,
+      "name": "BMW",
+      "location": "Sitra",
+      "imageName": "bmwLogo.png",
+      "basicDetails": "Wheel & Brakes Care, Battery Service, Oil Change, Windsheild Fluid Solution",
+      "basicPrice": "60",
+      "standardDetails": "Basic Vehicle Service, Vehicle Engine Cleaning, Wheel Polishing",
+      "standardPrice": "90",
+      "comprehensiveDetails": "Full Service Package, Vehicle Testing",
+      "comprehensivePrice": "110"
+    },
+    {
+      "id": 4,
+      "name": "McLareen",
+      "location": "Tubli",
+      "imageName": "McLaren-Logo.png",
+      "basicDetails": "Wheel & Brakes Care, Battery Service, Oil Change, Windsheild Fluid Solution",
+      "basicPrice": "120",
+      "standardDetails": "Basic Vehicle Service, Vehicle Engine Cleaning, Wheel Polishing",
+      "standardPrice": "135",
+      "comprehensiveDetails": "Full Service Package, Vehicle Testing, Vehicle pickup and dropoff",
+      "comprehensivePrice": "150"
+    },
+    {
+      "id": 5,
+      "name": "Changan",
+      "location": "Al Eker",
+      "imageName": "changanLogo.png",
+      "basicDetails": "Wheel Care, Battery Service, Oil Change",
+      "basicPrice": "20",
+      "standardDetails": "Basic Vehicle Service",
+      "standardPrice": "40",
+      "comprehensiveDetails": "Full Vehicle Testing, and Service",
+      "comprehensivePrice": "60"
+    },
+    {
+      "id": 6,
+      "name": "Masarati",
+      "location": "Sitra",
+      "imageName": "maseratiLogo.jpeg",
+      "basicDetails": "Wheel & Brakes Care, Battery Service, Oil Change, Windsheild Fluid Solution",
+      "basicPrice": "110",
+      "standardDetails": "Basic Vehicle Service, Vehicle Engine Cleaning, Wheel Polishing",
+      "standardPrice": "130",
+      "comprehensiveDetails": "Full Service Package, Vehicle Testing, Vehicle pickup and dropoff",
+      "comprehensivePrice": "145"
+    },
+    {
+      "id": 7,
+      "name": "Porche",
+      "location": "Sitra",
+      "imageName": "porcheLogo.jpg",
+      "basicDetails": "Wheel & Brakes Care, Battery Service, Oil Change, Windsheild Fluid Solution",
+      "basicPrice": "60",
+      "standardDetails": "Basic Vehicle Service, Vehicle Engine Cleaning, Wheel Polishing",
+      "standardPrice": "80",
+      "comprehensiveDetails": "Full Service Package, Vehicle Testing, Vehicle pickup and dropoff",
+      "comprehensivePrice": "100"
+    },
+    {
+      "id": 8,
+      "name": "Ford",
+      "location": "Sitra",
+      "imageName": "fordLogo.jpeg",
+      "basicDetails": "Wheel & Brakes Care, Battery Service, Oil Change",
+      "basicPrice": "47",
+      "standardDetails": "Basic Vehicle Service, Vehicle Engine Cleaning",
+      "standardPrice": "65",
+      "comprehensiveDetails": "Full Service Package, Vehicle Testing",
+      "comprehensivePrice": "90"
+    },
+    {
+      "id": 9,
+      "name": "Chevrollete",
+      "location": "Salmabad",
+      "imageName": "chevLogo.jpeg",
+      "basicDetails": "Wheel & Brakes Care, Battery Service, Oil Change",
+      "basicPrice": "40",
+      "standardDetails": "Basic Vehicle Service, Vehicle Engine Cleaning",
+      "standardPrice": "50",
+      "comprehensiveDetails": "Full Service Package, Vehicle Testing",
+      "comprehensivePrice": "60"
+    }
+  ]

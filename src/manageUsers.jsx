@@ -37,7 +37,7 @@ const ManageUsersPage = () => {
 
       if (userRole === "admin") {
         await setDoc(userRef, { role: newRole }, { merge: true });
-        // Refresh users data
+
         const updatedUsers = users.map((user) =>
           user.id === userId ? { ...user, role: newRole } : user
         );

@@ -3,6 +3,7 @@ import { useAuthorization } from "./authorization";
 import { firestore, auth, storage } from "./firebase";
 import { doc, updateDoc } from "firebase/firestore";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
+import { Link } from "react-router-dom";
 
 
 const ProfilePage = () => {
@@ -10,7 +11,6 @@ const ProfilePage = () => {
     const [newName, setNewName] = useState("");
     const [newEmail, setNewEmail] = useState("");
     const [newPassword, setNewPassword] = useState("");
-    const [profileImage, setProfileImage] = useState(null);
     const [profileImageUrl, setProfileImageUrl] = useState("");
   
     useEffect(() => {
@@ -83,52 +83,52 @@ const ProfilePage = () => {
     }
   };
 
+
   return (
-    
-    <div className="container" style={{ fontFamily: "Advent Pro" }}>
- <div className="mb-4"></div>
-    <h2 className="text-center text-light font-light" style={{ fontFamily: 'Advent Pro' }}>
-    Manage your profile
-    </h2>
-    <div className="mb-4"></div>
-      <div className="card mt-4">
+    <div className="container" style={{ fontFamily: "Advent Pro", maxWidth: "600px" }}>
+      <div className="mb-4"></div>
+      <h2 className="text-center text-light font-light" style={{ fontFamily: 'Advent Pro' }}>
+        Manage your profile
+      </h2>
+      <div className="mb-4"></div>
+  
+      <div className="card mt-2">
         <div className="card-body">
-            <div className="image-container">
-              {profileImageUrl ? (
-                <img src={profileImageUrl} alt="Profile" className="rounded-circle mb-2" style={{ width: "150px", height: "150px" }} />
-              ) : (
-                <div className="default-image"></div>
-              )}
-                 <div className="mb-4 text-center">
-              <input type="file" onChange={handleImageUpload} accept="image/*" className="btn btn-info mt-2" />
-           
-            </div>
-          </div>
-          <div className="mb-4 text-center">
-            <p><strong>Name:</strong> {userName}</p>
+          <div className="image-container">
+            {profileImageUrl ? (
+              <img src={profileImageUrl} alt="Profile" className="rounded-circle mb-2" style={{ width: "100px", height: "100px" }} />
+            ) : (
+              <div className="default-image"></div>
+            )}
+
+              <input type="file" onChange={handleImageUpload} accept="image/*" className="btn" />
+              <p><strong>Name:</strong> {userName}</p>
             <p><strong>Email:</strong> {userEmail}</p>
+            </div>
+            <Link to="/"><button className="btn btn-info mt-2" >Logout</button></Link>
+
           </div>
-        </div>
+           
+
       </div>
   
-      <div className="card mt-4">
+      <div className="card mt-2">
         <div className="card-body">
           <h2 className="card-title">Update Your Information</h2>
-          <div className="mb-4">
-            <label htmlFor="newName" className="form-label">New Name:</label>
-            <input id="newName" type="text" className="form-control" value={newName} onChange={(e) => setNewName(e.target.value)} />
+          <div className="mb-2">
+            <input id="newName" type="text" className="form-control" placeholder="New Name" value={newName} onChange={(e) => setNewName(e.target.value)} />
             <button className="btn btn-info mt-2" onClick={handleUpdateName}>Update Name</button>
           </div>
   
-          <div className="mb-4">
-            <label htmlFor="newEmail" className="form-label">New Email:</label>
-            <input id="newEmail" type="email" className="form-control" value={newEmail} onChange={(e) => setNewEmail(e.target.value)} />
+          <div className="mb-2">
+            <label htmlFor="newEmail" className="form-label"></label>
+            <input id="newEmail" type="email" className="form-control" placeholder="New Email" value={newEmail} onChange={(e) => setNewEmail(e.target.value)} />
             <button className="btn btn-info mt-2" onClick={handleUpdateEmail}>Update Email</button>
           </div>
   
-          <div className="mb-4">
-            <label htmlFor="newPassword" className="form-label">New Password:</label>
-            <input id="newPassword" type="password" className="form-control" value={newPassword} onChange={(e) => setNewPassword(e.target.value)} />
+          <div className="mb-2">
+            <label htmlFor="newPassword" className="form-label"></label>
+            <input id="newPassword" type="password" className="form-control" placeholder="New Password" value={newPassword} onChange={(e) => setNewPassword(e.target.value)} />
             <button className="btn btn-info mt-2" onClick={handleUpdatePassword}>Update Password</button>
           </div>
         </div>

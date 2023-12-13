@@ -1,35 +1,9 @@
 import React from "react";
+import carData from "./cars.json";
 
 function CarInfo({ handleSubmit, handleChange, userData }) {
-  const carManufacturers = [
-    "Toyota",
-    "Honda",
-    "Ford",
-    "BMW",
-    "Tesla",
-    "Mercedes-Benz",
-    "Audi",
-    "Chevrolet",
-    "Nissan",
-    "Volkswagen",
-    "Hyundai",
-    // Add more car manufacturers here
-  ];
-
-  const carModels = {
-    Toyota: ["Camry", "Corolla", "Rav4", "Highlander", "Prius"],
-    Honda: ["Accord", "Civic", "CR-V", "Pilot", "Odyssey"],
-    Ford: ["Mustang", "F-150", "Explorer", "Escape", "Focus"],
-    BMW: ["3 Series", "5 Series", "X5", "X3", "7 Series"],
-    Tesla: ["Model S", "Model 3", "Model X", "Model Y", "Cybertruck"],
-    "Mercedes-Benz": ["C-Class", "E-Class", "GLC", "GLE", "S-Class"],
-    Audi: ["A4", "A6", "Q5", "Q7", "TT"],
-    Chevrolet: ["Camaro", "Silverado", "Equinox", "Malibu", "Traverse"],
-    Nissan: ["Altima", "Rogue", "Maxima", "Sentra", "Pathfinder"],
-    Volkswagen: ["Golf", "Jetta", "Passat", "Tiguan", "Atlas"],
-    Hyundai: ["Elantra", "Sonata", "Tucson", "Santa Fe", "Kona"],
-    // Add more car models here for each manufacturer
-  };
+  const carManufacturers = carData.carManufacturers;
+  const carModels = carData.carModels;
 
   return (
     <div className="car-info-class">

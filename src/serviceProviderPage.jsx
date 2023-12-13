@@ -89,18 +89,18 @@ const Form = () => {
 
   return (
     <Container>
+      <center>
       <div className="mb-4"></div>
       <h2 className="text-center text-light font-light" style={{ fontFamily: 'Advent Pro' }}>
        Manage Service 
       </h2>
       <div className="mb-4"></div>
       <form onSubmit={handleSubmit}>
-        <div className="form-container bg-dark p-4">
-          <div className="header">
+      <div className="form-container bg-light p-4" style={{ width: '500px'}}>          <div className="header">
             <div className="mb-4"></div>
-            <h3 className="text-light font-light" style={{ fontFamily: 'Advent Pro' }}><center>
-              ServiceProviderInfo
-           </center> </h3>
+            <h3 className="text-dark font-light" style={{ fontFamily: 'Advent Pro' }}>
+
+              Add Customer Information </h3>
             <div className="mb-4"></div>
           </div>
           <div className="body">
@@ -115,6 +115,7 @@ const Form = () => {
           }
       />
             <div>
+            <div className="mb-4"></div>
               <input
               className="form-control"
                 type="text"
@@ -124,6 +125,7 @@ const Form = () => {
                 onChange={(e) => setUserData({ ...userData, VehicleNumber: e.target.value })}
               />
             </div>
+            <div className="mb-4"></div>
               <input
                       className="form-control"
                 type="text"
@@ -135,6 +137,7 @@ const Form = () => {
                 }
               />
             <div>
+            <div className="mb-4"></div>
               <input
                     type="text"
                       className="form-control"
@@ -145,6 +148,7 @@ const Form = () => {
               />
             </div>
             <div>
+            <div className="mb-4"></div>
               <input
                className="form-control"
                placeholder="Appointment date"
@@ -156,6 +160,7 @@ const Form = () => {
                 }
               />
             </div>
+            <div className="mb-4"></div>
             <div>
               <input
                className="form-control"
@@ -168,6 +173,7 @@ const Form = () => {
                 }
               />
             </div>
+            <div className="mb-4"></div>
             <div>
               <input
                className="form-control"
@@ -178,16 +184,19 @@ const Form = () => {
                 onChange={(e) => setUserData({ ...userData, Service: e.target.value })}
               />
             </div>
-            <div>
-            <label>Upload Document</label>
+            <div className="mb-4"></div>
+            <div className="d-flex align-items-center">
               <input
+               placeholder="Upload Document"
+              className="form-control"
                 type="file"
                 name="ImageUrl"
-                onChange={handleFileUpload}
-              />
-              <Button onClick={handleUpload}>Upload</Button>
+               onChange={handleFileUpload}
+                />
+            <Button onClick={handleUpload} className="ml-2">Upload</Button>
 </div>
           </div>
+
           <div className="mb-4"></div>
           <div className="footer">
             <Button type="submit" className="btn btn-info">
@@ -196,6 +205,7 @@ const Form = () => {
           </div>
         </div>
       </form>
+      </center>
     </Container>
   );
 };

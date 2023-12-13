@@ -17,15 +17,6 @@ import ProfilePage from "./profile";
 import HistoryPageRoad from "./history-road";
 import RoadAssistanceForm from "./roadAssistantPage";
 const App = () => {
-  const [user, setUser] = useState(null);
-//latest update
-  useEffect(() => {
-    const unsubscribe = auth.onAuthStateChanged((user) => {
-      setUser(user);
-    });
-
-    return () => unsubscribe();
-  }, []);
 
   return (
     <BrowserRouter>
@@ -47,11 +38,6 @@ const App = () => {
           <Route path="/profile" element={<ProfilePage />} />
           <Route path="/history-roadassist" element={<HistoryPageRoad />} />
           <Route path="/roadassistantpage" element={<RoadAssistanceForm />} />
-
-          <Route
-            path="/"
-            element={user ? null : <Navigate to="/dashboard" replace />}
-          />
         </Route>
       </Routes>
     </BrowserRouter>

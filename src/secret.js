@@ -1,1 +1,0 @@
-export const connectString= 'mongodb+srv://HudaJ:hudaJ99@huda.ndsejym.mongodb.net/?retryWrites=true&w=majority';

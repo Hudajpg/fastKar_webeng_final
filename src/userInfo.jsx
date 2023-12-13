@@ -22,7 +22,7 @@ function UserInfo({ handleSubmit, handleChange, userData }) {
 
             <input
               type="text"
-              className="form-control-sm"
+              className="form-control"
               name="customerLastName"
               placeholder="Last Name"
               value={userData.customerLastName}

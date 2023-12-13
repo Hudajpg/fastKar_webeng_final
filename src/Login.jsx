@@ -51,7 +51,6 @@ const Login = () => {
               LOGIN
             </Button>
             <div className="mt-2 text-end">
-              <Link to="./forgotpassword" className="text-info">Forgot Password</Link>
             </div>
           </div>
         </Form>

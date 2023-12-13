@@ -1,65 +1,7 @@
 import { Link, Route, Routes, useNavigate, useParams } from "react-router-dom";
 import { Card, Button, Row, Col } from 'react-bootstrap';
 import React, { createContext, useState } from "react";
-
-const serviceAgents = [
-  { id: 1, name: "Nissan", location: "Salmabad", imageName: "logo192.png",
-    basicDetails:"Wheel & Brakes Care, Battery Service, Oil Change", basicPrice: "35",  
-    standardDetails:"Basic Vehicle Service, Vehicle Engine Cleaning", standardPrice: "50",
-    comprehensiveDetails:"Full Service Package, Vehicle Testing ", comprehensivePrice: "88"},
-
-  { id: 2, name: "Toyota", location: "Tubli", imageName: "", 
-    basicDetails:"Wheel & Brakes Care, Battery Service, Oil Change", basicPrice: "40", 
-    standardDetails:"Basic Vehicle Service, Vehicle Engine Cleaning", standardPrice: "55",
-    comprehensiveDetails:"Full Service Package, Vehicle Testing", comprehensivePrice: "90"},
-
-
-    { id: 3, name: "BMW", location: "Sitra", imageName: "", 
-    basicDetails:"Wheel & Brakes Care, Battery Service, Oil Change, Windsheild Fluid Solution", basicPrice: "60",  
-    standardDetails:"Basic Vehicle Service, Vehicle Engine Cleaning, Wheel Polishing", standardPrice: "90",
-    comprehensiveDetails:"Full Service Package, Vehicle Testing", comprehensivePrice: "110"},
-
-
-    { id: 4, name: "McLareen", location: "Tubli", imageName: "", 
-    basicDetails:"Wheel & Brakes Care, Battery Service, Oil Change, Windsheild Fluid Solution", basicPrice: "120", 
-    standardDetails:"Basic Vehicle Service, Vehicle Engine Cleaning, Wheel Polishing", standardPrice: "135", 
-    comprehensiveDetails:"Full Service Package, Vehicle Testing, Vehicle pickup and dropoff", 
-    comprehensivePrice: "150"},
-
-
-    { id: 5, name: "Changan", location: "Al Eker", imageName: "", 
-    basicDetails:"Wheel Care, Battery Service, Oil Change", basicPrice: "20",  
-    standardDetails:"Basic Vehicle Service", standardPrice: "40", 
-    comprehensiveDetails:"Full Vehicle Testing, and Service ", comprehensivePrice: "60"},
-
-
-    { id: 6, name: "Masarati", location: "Sitra", imageName: "", 
-    basicDetails:"Wheel & Brakes Care, Battery Service, Oil Change, Windsheild Fluid Solution", basicPrice: "110",  
-    standardDetails:"Basic Vehicle Service, Vehicle Engine Cleaning, Wheel Polishing", standardPrice: "130",
-    comprehensiveDetails:"Full Service Package, Vehicle Testing, Vehicle pickup and dropoff",
-     comprehensivePrice: "145"},
-
-
-    { id: 7, name: "Porche", location: "Sitra", imageName: "", 
-    basicDetails:"Wheel & Brakes Care, Battery Service, Oil Change, Windsheild Fluid Solution", basicPrice: "60",  
-    standardDetails:"Basic Vehicle Service, Vehicle Engine Cleaning, Wheel Polishing", standardPrice: "80", 
-    comprehensiveDetails:"Full Service Package, Vehicle Testing, Vehicle pickup and dropoff", 
-    comprehensivePrice: "100"},
-
-
-    { id: 8, name: "Ford", location: "Sitra", imageName: "", 
-    basicDetails:"Wheel & Brakes Care, Battery Service, Oil Change", basicPrice: "47",  
-    standardDetails:"Basic Vehicle Service, Vehicle Engine Cleaning", standardPrice: "65", 
-    comprehensiveDetails:"Full Service Package, Vehicle Testing", comprehensivePrice: "90"},
-
-
-    { id: 9, name: "Chevrollete", location: "Salmabad", imageName: "", 
-    basicDetails:"Wheel & Brakes Care, Battery Service, Oil Change", basicPrice: "40",  
-    standardDetails:"Basic Vehicle Service, Vehicle Engine Cleaning", standardPrice: "50", 
-    comprehensiveDetails:"Full Service Package, Vehicle Testing", comprehensivePrice: "60"}
-
-    
-];
+import serviceData from "./servicesinfo.json";
 
 const ServicesPage = () => {
   return (
@@ -70,13 +12,13 @@ const ServicesPage = () => {
       </h2>
       <div className="mb-4"></div>
       <div className="row row-cols-1 row-cols-md-3">
-        {serviceAgents.map(agent => (
+        {serviceData.map(agent => (
           <div className="col mb-4">
             <Card key={agent.id} className="h-100">
               <Card.Body>
                 <div style={{ height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
                   <div style={{ flexGrow: 1 }}>
-                    <Card.Img variant="top" src={serviceAgents.imageName} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                    <Card.Img variant="top" src={agent.imageName} style={{ width: '40%', height: 'auto', objectFit: 'contain' }} />
                   </div>
                   <div className="d-flex justify-content-between align-items-center mt-2">
                     <div>
@@ -92,8 +34,7 @@ const ServicesPage = () => {
         ))}
       </div>
     </div>
-  );
-}
+  );}
 
 const BookingContext = createContext();
 
@@ -101,17 +42,18 @@ const ServiceDetailsPage = () => {
   const [currentAgency, setcurrentAgency] = useState(null);
   const { id } = useParams();
 
-  const selectedAgent = serviceAgents.find(agent => agent.id === Number(id));
+  const selectedAgent = serviceData.find(agent => agent.id === Number(id));
 
   const navigate = useNavigate();
 
   const handleBookButtonClick = () => {
     navigate("/booking");
-    const selectedName=selectedAgent.name;
-    console.log("Agency"+selectedName)
+    const selectedName = selectedAgent.name;
+    console.log("Agency" + selectedName);
     setcurrentAgency(selectedName);
   };
 
+  
   return (
     <div>
       <div className="mb-4"></div>
@@ -119,44 +61,30 @@ const ServiceDetailsPage = () => {
         Service Details
       </h2>
       <div className="mb-4"></div>
-      <Row>
-        <Col md={6}>
-          <Card className="mb-3">
-            <Card.Body>
-              <Card.Img variant="top" src={selectedAgent.imageName} />
-              <Card.Title>{selectedAgent.name} Service</Card.Title>
-              <br></br>
-              <Card.Text>{"Find what you are looking for? Book now!"}</Card.Text>
-              <Button onClick={handleBookButtonClick} className="btn btn-info">
-                  Book
-                </Button>
-            </Card.Body>
-          </Card>
-        </Col>
-        <Col md={6}>
-          <div className="d-flex flex-column">
-            <Card className="mb-3">
-              <Card.Body>
-                <Card.Title>Basic Service</Card.Title>
-                <Card.Text>{selectedAgent.basicDetails}</Card.Text>
-              </Card.Body>
-            </Card>
-            <Card className="mb-3">
-              <Card.Body>
-                <Card.Title>Standard Service</Card.Title>
-                <Card.Text>{selectedAgent.standardDetails}</Card.Text>
-              </Card.Body>
-            </Card>
-            <Card className="mb-3">
-              <Card.Body>
-                <Card.Title>Comprehensive Service</Card.Title>
-                <Card.Text>{selectedAgent.comprehensiveDetails}</Card.Text>
-      
-              </Card.Body>
-            </Card>
+      <Card className="mb-3" style={{ maxWidth: '400px', margin: '0 auto' }}>
+        <Card.Body>
+        <div className="mb-3"></div>
+          <Card.Title className="text-center">{selectedAgent.name} Service</Card.Title>
+          <div className="mb-3"></div>
+          <hr />
+          
+          <div className="mb-4">
+            <Card.Title className="text-center">Comprehensive Service</Card.Title>
+            <Card.Text className="text-center">{selectedAgent.comprehensiveDetails}</Card.Text>
           </div>
-        </Col>
-      </Row>
+          <div className="mb-4">
+            <Card.Title className="text-center">Basic Service</Card.Title>
+            <Card.Text className="text-center">{selectedAgent.basicDetails}</Card.Text>
+          </div>
+          <div className="mb-4">
+            <Card.Title className="text-center">Standard Service</Card.Title>
+            <Card.Text className="text-center">{selectedAgent.standardDetails}</Card.Text>
+          </div>
+          <Button onClick={handleBookButtonClick} className="btn btn-info d-block mx-auto">
+            Book
+          </Button>
+        </Card.Body>
+      </Card>
     </div>
   );
 };

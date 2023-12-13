@@ -1,22 +1,29 @@
 import React, { useState, useEffect } from "react";
 import { useAuthorization } from "./authorization";
 import { getFirestore, collection, doc, updateDoc, arrayRemove, getDoc, onSnapshot } from "firebase/firestore";
-import { firestore } from './firebase';
+import {auth, firestore } from './firebase';
 
 const AppointmentsPage = () => {
-  const { bookingIDs, role } = useAuthorization();
+  const { bookingIDs, userRole } = useAuthorization();
   const [appointments, setAppointments] = useState([]);
   const [showAllocationSection, setShowAllocationSection] = useState(false);
+  const [selectedDate, setSelectedDate] = useState("");
+  const [selectedTime, setSelectedTime] = useState("");
 
+  const user = auth.currentUser;
+useEffect(() => {
+  const fetchAppointments = async () => {
+    try {
+      const user = auth.currentUser;
+      if (user) {
+        const userRef = doc(getFirestore(), "users", user.uid);
+        const userSnapshot = await getDoc(userRef);
+        const userData = userSnapshot.data();
 
-  useEffect(() => {
-    const fetchAppointments = async () => {
-      if (bookingIDs && bookingIDs.length > 0) {
-        try {
+        if (userData && userData.appointments && userData.appointments.length > 0) {
           const updatedAppointments = [];
 
-          // Fetch appointments one by one from the array
-          for (const bookingId of bookingIDs) {
+          for (const bookingId of userData.appointments) {
             const bookingRef = doc(firestore, "bookings", bookingId);
             const bookingSnapshot = await getDoc(bookingRef);
             if (bookingSnapshot.exists()) {
@@ -32,25 +39,65 @@ const AppointmentsPage = () => {
             setAppointments([]);
             console.log("No appointments found.");
           }
-        } catch (error) {
-          console.log("Error fetching appointments:", error);
+        } else {
+          setAppointments([]);
+          console.log("No user data or appointments found.");
         }
       } else {
-        console.log("Booking IDs are undefined or empty.");
+        console.log("User not found.");
       }
-    };
+    } catch (error) {
+      console.log("Error fetching appointments:", error);
+    }
+  };
+  if (userRole === "service provider") {
+    setShowAllocationSection(true);
+  }
+  fetchAppointments();
+}, []);
 
-    fetchAppointments();
-  }, [bookingIDs]);
+//
+  const handleDateChange = (event) => {
+    setSelectedDate(event.target.value);
+  };
 
-  useEffect(() => {
-    setShowAllocationSection(role === "service provider");
-  }, [role]);
+  const handleTimeChange = (event) => {
+    setSelectedTime(event.target.value);
+  };
+
+  const handleAllocationSubmit = async (event) => {
+    event.preventDefault();
+  
+    try {
+      const userDocRef = doc(getFirestore(), "users", user.uid); 
+      console.log(user.uid);
+      const userDocSnapshot = await getDoc(userDocRef);
+  
+      if (userDocSnapshot.exists()) {
+        const userData = userDocSnapshot.data();
+        const allocatedDates = userData.allocatedDates || [];
+  
+        allocatedDates.push({ date: selectedDate, time: selectedTime });
+  
+        await updateDoc(userDocRef, {
+          allocatedDates: allocatedDates
+        });
+  
+        console.log("Allocation Successful!");
+      } else {
+        console.log("User not found.");
+      }
+    } catch (error) {
+      console.log("Error allocating date and time:", error);
+    }
+  };
+//
+
 
   const cancelAppointment = async (appointmentId) => {
-    if (bookingIDs) {
-      try {
-        const userRef = doc(firestore, "users", bookingIDs[0]);
+    try {
+      if (user) {
+        const userRef = doc(firestore, "users", user.uid);
         const userSnapshot = await getDoc(userRef);
         const userData = userSnapshot.data();
   
@@ -68,13 +115,26 @@ const AppointmentsPage = () => {
         } else {
           console.log("No user data or appointments found.");
         }
-      } catch (error) {
-        console.log("Error canceling appointment:", error);
+      } else {
+        console.log("User not found.");
       }
-    } else {
-      console.log("Booking ID is undefined.");
+    } catch (error) {
+      console.log("Error canceling appointment:", error);
     }
   };
+
+
+
+
+
+
+
+
+
+
+
+
+
   return (
     <div className="container">
       <div className="mb-4"></div>
@@ -84,8 +144,22 @@ const AppointmentsPage = () => {
       <div className="mb-4"></div>
       {showAllocationSection && (
         <div className="mb-4">
-          <h3 className="text-center">Allocate Time Slots</h3>
-          {/* ... Allocation section code here ... */}
+         {showAllocationSection && (
+  <div className="mb-4">
+    <h3 className="text-center">Allocate Time Slots</h3>
+    <form onSubmit={handleAllocationSubmit}>
+      <div className="form-group">
+        <label htmlFor="date">Date:</label>
+        <input type="date" id="date" className="form-control" value={selectedDate} onChange={handleDateChange} />
+      </div>
+      <div className="form-group">
+        <label htmlFor="time">Time:</label>
+        <input type="time" id="time" className="form-control" value={selectedTime} onChange={handleTimeChange} />
+      </div>
+      <button type="submit" className="btn btn-primary">Allocate</button>
+    </form>
+  </div>
+)}
         </div>
       )}
       {appointments.length > 0 ? (

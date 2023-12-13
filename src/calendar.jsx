@@ -20,6 +20,7 @@ const CustomCalendar = () => {
       return (
         <div className="booked-date">
           <p>{formattedDate}</p>
+          <span className="booked-flag">Booked</span>
         </div>
       );
     }

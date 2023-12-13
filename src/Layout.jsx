@@ -22,16 +22,27 @@ const Layout = () => {
               <Nav.Link as={Link} to="/dashboard" className="text-info advent-pro-medium">Home</Nav.Link>
               <Nav.Link as={Link} to="/road-assistance" className="text-info advent-pro-medium">Road Assistance</Nav.Link>
               <Nav.Link as={Link} to="/services" className="text-info advent-pro-medium">Services</Nav.Link>
-              <Nav.Link as={Link} to="/calendar" className="text-info advent-pro-medium">Calendar</Nav.Link>
-              {userRole === "Service Provider" && (
+              <Nav.Link as={Link} to="/managebookings" className="text-info advent-pro-medium">Manage Booking</Nav.Link>
+
+              {userRole === "service provider" && (
                 <Nav.Link as={Link} to="/history" className="text-info advent-pro-medium">History</Nav.Link>
+                
+              )}
+              {userRole === "service provider" && (
+                <Nav.Link as={Link} to="/serviceprov-info" className="text-info advent-pro-medium">Service Information</Nav.Link>
+                
+              )}
+              {userRole === "service provider-road" && (
+                <Nav.Link as={Link} to="/roadassistantpage" className="text-info advent-pro-medium">Road Assistant Information</Nav.Link>
+              )}
+                {userRole === "service provider-road" && (
+                <Nav.Link as={Link} to="/history-roadassist" className="text-info advent-pro-medium">History</Nav.Link>
               )}
             </Nav>
             <Nav>
-                <Nav.Link as={Link} to="/managebookings" className="text-info">
+              <Nav.Link as={Link} to="/profile" className="text-info">
                 <img src="profile-icon.png" alt="Profile" className="img-fluid" style={{ width: "30px", height: "30px" }} />
               </Nav.Link>
-
             </Nav>
             {userRole === "admin" && (
               <Nav>

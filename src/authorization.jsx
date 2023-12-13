@@ -1,11 +1,12 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import "leaflet/dist/leaflet.css";
 import React, { useEffect, useState } from "react";
-import { auth } from "./firebase";
 import { firestore } from './firebase';
 import { doc, getDoc, collection, query, where, getDocs } from "firebase/firestore";
+import { auth } from "./firebase";
 
 export const useAuthorization = () => {
+  const [currentUser, setCurrentUser] = useState(null);
   const [userRole, setUserRole] = useState(null);
   const [userName, setUserName] = useState(null);
   const [userEmail, setUserEmail] = useState(null);

@@ -151,16 +151,18 @@ const db = getFirestore();
 
       return (
         <Container>
+          <center>
                  <div className="mb-4"></div>
         <h2 className="text-center text-light font-light" style={{ fontFamily: 'Advent Pro' }}>
                     Book a Sercive! </h2>
         <div className="mb-4"></div>
            <form onSubmit={handleSubmit}>
-           <div className="form-container p-4 bg-dark" style={{ color: 'rgba(0, 0, 0, 0)' }}>
+            
+           <div className="form-container bg-light p-4" style={{ width: '500px'}}>
           <ProgressBar now={progress} label={``} />
             <div className="header">
             <div className="mb-4"></div>
-            <h3 className="text-light font-light" style={{ fontFamily: 'Advent Pro' }}>
+            <h3 className="text-dark font-light" style={{ fontFamily: 'Advent Pro' }}>
 {FormTitles[page]}</h3>        <div className="mb-4"></div>
             </div>
             <div className="body">
@@ -192,6 +194,7 @@ const db = getFirestore();
           
           </div>
           </form>
+          </center>
         </Container>
       );
 };
